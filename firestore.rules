@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Allow read and write across all application collections for robust real-world and guest operation
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

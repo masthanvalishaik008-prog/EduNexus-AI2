@@ -1,0 +1,214 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Student 360 profile record with 7 telemetry categories, login speedometer streak, and success analytics",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Student unique ID (e.g. ENX-2024-101)" },
+        "name": { "type": "string", "description": "Full student name" },
+        "email": { "type": "string", "description": "Student institutional email" },
+        "gender": { "type": "string", "description": "Gender" },
+        "department": { "type": "string", "description": "Engineering department" },
+        "batch": { "type": "string", "description": "Graduation batch" },
+        "semester": { "type": "number", "description": "Current semester (1-8)" },
+        "mentorName": { "type": "string", "description": "Assigned faculty mentor" },
+        "compositeScore": { "type": "number", "description": "Composite success score (0-100)" },
+        "riskLevel": { "type": "string", "description": "Support tier" },
+        "loginStreak": { "type": "number", "description": "Daily consecutive login speedometer streak (days)" },
+        "lastLoginDate": { "type": "string", "description": "Last recorded login date in YYYY-MM-DD" },
+        "points": { "type": "number", "description": "XP Points earned from quizzes and achievements" }
+      },
+      "required": ["id", "name", "email", "department"]
+    },
+    "Staff": {
+      "title": "Staff",
+      "description": "Staff profile record with department, designation, courses, and mentoring load",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Staff employee ID (e.g. STF-ECE-01)" },
+        "name": { "type": "string", "description": "Faculty/Staff name" },
+        "email": { "type": "string", "description": "Staff email" },
+        "department": { "type": "string", "description": "Department" },
+        "designation": { "type": "string", "description": "Academic title or designation" },
+        "role": { "type": "string", "description": "System role" },
+        "cabin": { "type": "string", "description": "Office cabin location" },
+        "phone": { "type": "string", "description": "Contact telephone" },
+        "officeHours": { "type": "string", "description": "Weekly consultation hours" },
+        "specialization": { "type": "string", "description": "Research and domain specialization" },
+        "assignedStudentsCount": { "type": "number", "description": "Total mentees assigned" },
+        "experienceYears": { "type": "number", "description": "Years of teaching and industry experience" }
+      },
+      "required": ["id", "name", "email", "department", "designation"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile for authenticated advisors and students",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "User UID" },
+        "email": { "type": "string", "description": "User email" },
+        "name": { "type": "string", "description": "Display name" },
+        "role": { "type": "string", "description": "System role" }
+      },
+      "required": ["id", "email"]
+    },
+    "StudentActivity": {
+      "title": "StudentActivity",
+      "description": "Student engagement activity logs, quiz completions, and achievements",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Activity ID" },
+        "studentId": { "type": "string", "description": "Target student ID" },
+        "studentName": { "type": "string", "description": "Target student name" },
+        "department": { "type": "string", "description": "Department" },
+        "title": { "type": "string", "description": "Activity title" },
+        "category": { "type": "string", "description": "Category" },
+        "description": { "type": "string", "description": "Detailed description" },
+        "status": { "type": "string", "description": "Status" },
+        "progressPct": { "type": "number", "description": "Progress percentage" },
+        "hoursSpent": { "type": "number", "description": "Hours dedicated" },
+        "dateLogged": { "type": "string", "description": "Date logged YYYY-MM-DD" },
+        "dateCompleted": { "type": "string", "description": "Date completed YYYY-MM-DD" },
+        "verifiedByStaff": { "type": "boolean", "description": "Staff verification status" },
+        "staffFeedback": { "type": "string", "description": "Staff verification note" },
+        "verifiedByStaffName": { "type": "string", "description": "Verifying staff member" },
+        "verifiedAt": { "type": "string", "description": "Timestamp of verification" },
+        "score": { "type": "number", "description": "Score or XP earned" }
+      },
+      "required": ["id", "studentId", "title", "status"]
+    },
+    "StaffActivity": {
+      "title": "StaffActivity",
+      "description": "Staff activities, mentoring reviews, and intervention sessions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Staff activity ID" },
+        "staffId": { "type": "string", "description": "Staff ID" },
+        "staffName": { "type": "string", "description": "Staff name" },
+        "department": { "type": "string", "description": "Department" },
+        "activityType": { "type": "string", "description": "Type of action performed" },
+        "studentId": { "type": "string", "description": "Related student ID" },
+        "studentName": { "type": "string", "description": "Related student name" },
+        "notes": { "type": "string", "description": "Observations or meeting summary" },
+        "timestamp": { "type": "string", "description": "Date and time performed" }
+      },
+      "required": ["id", "staffId", "activityType", "timestamp"]
+    },
+    "DailyQuiz": {
+      "title": "DailyQuiz",
+      "description": "10 daily knowledge booster questions updated daily per branch",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Quiz Question ID" },
+        "date": { "type": "string", "description": "Effective date YYYY-MM-DD" },
+        "department": { "type": "string", "description": "Target engineering department" },
+        "subject": { "type": "string", "description": "Subject / Topic" },
+        "question": { "type": "string", "description": "Question prompt" },
+        "correctIndex": { "type": "number", "description": "Zero-based correct index" },
+        "explanation": { "type": "string", "description": "Detailed conceptual explanation" }
+      },
+      "required": ["id", "department", "question", "explanation"]
+    },
+    "News": {
+      "title": "News",
+      "description": "Branch news briefings and daily updates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "News ID" },
+        "title": { "type": "string", "description": "News Title" },
+        "content": { "type": "string", "description": "Full News Content" },
+        "department": { "type": "string", "description": "Target Department" },
+        "category": { "type": "string", "description": "Category or topic" },
+        "timestamp": { "type": "string", "description": "Date of publication" }
+      },
+      "required": ["id", "title", "content", "department"]
+    },
+    "StudentFeedback": {
+      "title": "StudentFeedback",
+      "description": "Easy-to-understand student feedback reports with mentor advice and clear action items",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Feedback ID" },
+        "studentId": { "type": "string", "description": "Student ID" },
+        "studentName": { "type": "string", "description": "Student Name" },
+        "date": { "type": "string", "description": "Evaluation date" },
+        "overallSummary": { "type": "string", "description": "Friendly plain-language summary" },
+        "strengths": { "type": "string", "description": "What the student is doing great at" },
+        "growthTips": { "type": "string", "description": "Clear and simple next steps" },
+        "advisorMessage": { "type": "string", "description": "Encouraging note from faculty mentor" }
+      },
+      "required": ["id", "studentId", "overallSummary"]
+    },
+    "Intervention": {
+      "title": "Intervention",
+      "description": "Recorded mentoring and remedial sessions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Intervention record ID" },
+        "studentId": { "type": "string", "description": "Target student ID" },
+        "studentName": { "type": "string", "description": "Target student name" },
+        "department": { "type": "string", "description": "Department" },
+        "type": { "type": "string", "description": "Intervention type" },
+        "facultyLead": { "type": "string", "description": "Lead faculty mentor" },
+        "status": { "type": "string", "description": "Status" }
+      },
+      "required": ["id", "studentId", "status"]
+    },
+    "StudentAlert": {
+      "title": "StudentAlert",
+      "description": "Early Support Radar alert states and reviews",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Alert ID" },
+        "studentId": { "type": "string", "description": "Target student ID" },
+        "title": { "type": "string", "description": "Alert title" },
+        "priority": { "type": "string", "description": "Priority tier" },
+        "status": { "type": "string", "description": "Review status" }
+      },
+      "required": ["id", "studentId", "priority"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles for authenticated advisors and users"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Student 360 profile records, 7 telemetry categories, and daily speedometer streaks"
+    },
+    "/staff/{staffId}": {
+      "schema": "Staff",
+      "description": "Staff profiles and faculty records"
+    },
+    "/student_activities/{activityId}": {
+      "schema": "StudentActivity",
+      "description": "Student engagement activity logs and quiz completions"
+    },
+    "/staff_activities/{activityId}": {
+      "schema": "StaffActivity",
+      "description": "Staff actions, mentoring logs, and verifications"
+    },
+    "/daily_quizzes/{quizId}": {
+      "schema": "DailyQuiz",
+      "description": "10 daily branch knowledge questions updated daily"
+    },
+    "/news/{newsId}": {
+      "schema": "News",
+      "description": "Branch-specific news briefings updated daily"
+    },
+    "/student_feedbacks/{feedbackId}": {
+      "schema": "StudentFeedback",
+      "description": "Easy-to-understand student feedback summaries"
+    },
+    "/interventions/{interventionId}": {
+      "schema": "Intervention",
+      "description": "Recorded mentoring and remedial sessions"
+    },
+    "/alerts/{alertId}": {
+      "schema": "StudentAlert",
+      "description": "Early Support Radar alert states and reviews"
+    }
+  }
+}

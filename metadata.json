@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix EduNexus AI — Student Success Analytics \u0026 Placement Intelligence",
+  "description": "Enterprise analytics integrating 7 college student data categories to explain support needs, forecast placement readiness, and power the Student Success Action Loop.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
